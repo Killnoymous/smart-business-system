@@ -1,12 +1,16 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 
+import product1 from '../assets/product1.png';
+import product2 from '../assets/product2.jpg';
+import product3 from '../assets/product3.jpg';
+
 const ProductGrid = () => {
     // Mock Data
     const products = [
-        { id: 1, name: "Peach Floral Anarkali Set", category: "Suit Set", price: "₹2,499", originalPrice: "₹4,999", tag: "Best Seller" },
-        { id: 2, name: "Teal Embroidered Kurta", category: "Kurta", price: "₹1,899", originalPrice: "₹2,599" },
-        { id: 3, name: "Ivory Cotton Maxi Dress", category: "Dresses", price: "₹2,100", tag: "New" },
+        { id: 1, name: "Peach Floral Anarkali Set", category: "Suit Set", price: "₹2,499", originalPrice: "₹4,999", tag: "Best Seller", image: product1 },
+        { id: 2, name: "Teal Embroidered Kurta", category: "Kurta", price: "₹1,899", originalPrice: "₹2,599", image: product2 },
+        { id: 3, name: "Ivory Cotton Maxi Dress", category: "Dresses", price: "₹2,100", tag: "New", image: product3 },
         { id: 4, name: "Gold Plated Chandbalis", category: "Jewelry", price: "₹899", originalPrice: "₹1,200" },
         { id: 5, name: "Maroon Silk Sharara Set", category: "Suit Set", price: "₹3,599", originalPrice: "₹6,000", tag: "Sale" },
         { id: 6, name: "Indigo Block Print Co-ord", category: "Co-ords", price: "₹1,599" },
