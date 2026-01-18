@@ -10,68 +10,67 @@ const Header = () => {
         { name: 'Suit Sets', href: '#' },
         { name: 'Dresses', href: '#' },
         { name: 'Co-ords', href: '#' },
-        { name: 'Jewelry', href: '#' },
-        { name: 'Sale', href: '#', isSale: true },
+        { name: 'Deals', href: '#', isSale: true }, // Replaced Jewelry with Deals
     ];
 
     return (
-        <div className="w-full relative z-50 bg-white font-sans">
-            {/* 1. Announcement Bar */}
-            <div className="bg-[#E72480] text-white text-center py-2.5 text-[10px] md:text-xs tracking-[0.2em] font-medium uppercase">
-                Free Shipping on Orders Above ₹999 | WorldWide Shipping
+        <div className="w-full relative z-50 bg-white font-sans shadow-sm">
+            {/* Announcement Bar */}
+            <div className="bg-[#E72480] text-white text-center py-2 text-[10px] md:text-xs tracking-[0.2em] font-medium uppercase">
+                Free Shipping on Orders Above ₹999
             </div>
 
-            {/* 2. Brand Section (Scrolls Away) */}
-            <div className="bg-white py-6 md:py-8 border-b border-gray-50 flex justify-center items-center relative">
-                <a href="/" className="block group">
-                    <img
-                        src={logo}
-                        alt="Bhagwati Creations"
-                        className="h-16 md:h-28 object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
-                </a>
-            </div>
+            {/* Main Header - Single Line */}
+            <header className="sticky top-0 bg-white z-50">
+                <div className="container mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
 
-            {/* 3. Sticky Navigation Bar */}
-            <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-                <div className="container mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-
-                    {/* Mobile: Hamburger */}
+                    {/* Left: Mobile Menu Button */}
                     <button
-                        className="md:hidden text-gray-800 p-2 -ml-2 hover:bg-gray-50 rounded-full transition-colors"
+                        className="lg:hidden text-gray-800"
                         onClick={() => setIsMobileMenuOpen(true)}
                     >
-                        <Menu size={24} strokeWidth={1.5} />
+                        <Menu size={24} />
                     </button>
 
-                    {/* Desktop: Navigation Links (Centered) */}
-                    <nav className="hidden md:flex flex-1 justify-center space-x-10">
+                    {/* Left: Brand Logo */}
+                    <div className="flex-shrink-0">
+                        <a href="/" className="block">
+                            <img
+                                src={logo}
+                                alt="Bhagwati Creations"
+                                className="h-12 md:h-16 object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                        </a>
+                    </div>
+
+                    {/* Center: Navigation Links (Desktop) */}
+                    <nav className="hidden lg:flex flex-1 justify-center space-x-8 xl:space-x-12">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className={`text-sm font-medium uppercase tracking-widest relative group py-2
-                                    ${link.isSale ? 'text-[#E72480]' : 'text-gray-800 hover:text-[#E72480]'}
+                                className={`text-sm font-semibold uppercase tracking-wider relative group py-2
+                                    ${link.isSale ? 'text-[#E72480]' : 'text-gray-700 hover:text-[#E72480]'}
                                     transition-colors duration-300
                                 `}
                             >
                                 {link.name}
-                                <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-[#E72480] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></span>
+                                <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#E72480] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></span>
                             </a>
                         ))}
                     </nav>
 
-                    {/* Right: Icons (Always Visible) */}
-                    <div className="flex items-center space-x-2 md:space-x-6">
-                        <button className="p-2 text-gray-800 hover:text-[#E72480] transition-colors rounded-full hover:bg-gray-50">
-                            <Search size={22} strokeWidth={1.5} />
+                    {/* Right: Icons */}
+                    <div className="flex items-center space-x-4 md:space-x-6">
+                        <button className="text-gray-700 hover:text-[#E72480] transition-colors">
+                            <Search size={20} strokeWidth={2} />
                         </button>
-                        <button className="hidden md:block p-2 text-gray-800 hover:text-[#E72480] transition-colors rounded-full hover:bg-gray-50">
-                            <Heart size={22} strokeWidth={1.5} />
+                        <button className="hidden md:block text-gray-700 hover:text-[#E72480] transition-colors">
+                            <Heart size={20} strokeWidth={2} />
                         </button>
-                        <button className="p-2 text-gray-800 hover:text-[#E72480] transition-colors rounded-full hover:bg-gray-50 relative">
-                            <ShoppingBag size={22} strokeWidth={1.5} />
-                            <span className="absolute top-1 right-0.5 w-4 h-4 bg-[#E72480] text-white text-[10px] flex items-center justify-center rounded-full font-bold">0</span>
+                        <button className="text-gray-700 hover:text-[#E72480] transition-colors relative">
+                            <ShoppingBag size={20} strokeWidth={2} />
+                            <span className="absolute -top-1 -right-1 bg-[#E72480] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">0</span>
                         </button>
                     </div>
                 </div>
@@ -86,7 +85,7 @@ const Header = () => {
                     <div className="flex justify-between items-center p-6 border-b border-gray-100">
                         <span className="text-lg font-serif italic text-[#E72480]">Menu</span>
                         <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-500 hover:text-red-500">
-                            <X size={24} strokeWidth={1.5} />
+                            <X size={24} />
                         </button>
                     </div>
                     <div className="flex flex-col p-6 space-y-6">
@@ -102,12 +101,6 @@ const Header = () => {
                                 {link.name}
                             </a>
                         ))}
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-full p-6 bg-gray-50 border-t border-gray-100">
-                        <div className="flex items-center justify-center space-x-6 text-gray-600">
-                            <span className="text-xs uppercase tracking-widest">Follow Us</span>
-                            {/* Add social icons here if needed */}
-                        </div>
                     </div>
                 </div>
             </div>
