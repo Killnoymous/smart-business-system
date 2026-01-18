@@ -23,11 +23,14 @@ const ProductCard = ({ product }) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className="relative aspect-[3/4] overflow-hidden bg-gray-200 mb-4">
-                {/* Placeholder Image */}
-                <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 bg-gray-100 group-hover:bg-gray-200 transition-colors">
-                    <span className="text-4xl mb-2 font-thin">{product.id}</span>
-                    <span className="text-xs uppercase tracking-widest">Product Image</span>
-                </div>
+                {product.image ? (
+                    <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 bg-gray-100 group-hover:bg-gray-200 transition-colors">
+                        <span className="text-4xl mb-2 font-thin">{product.id}</span>
+                        <span className="text-xs uppercase tracking-widest">Product Image</span>
+                    </div>
+                )}
 
                 {/* Quick Action Overlay */}
                 <div className={`absolute bottom-0 left-0 w-full bg-white/90 p-4 transform transition-transform duration-300 ${isHovered ? 'translate-y-0' : 'translate-y-full'}`}>
