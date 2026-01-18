@@ -45,7 +45,7 @@ const Header = () => {
                 {/* Logo */}
                 <div className="text-center flex-1 md:flex-none md:text-left">
                     <a href="/" className="block">
-                        <img src={logo} alt="Bhagwati Creations" className="h-12 md:h-16 object-contain" />
+                        <img src={logo} alt="Bhagwati Creations" className="h-20 md:h-24 object-contain transition-all duration-300 transform hover:scale-105" />
                     </a>
                 </div>
 
