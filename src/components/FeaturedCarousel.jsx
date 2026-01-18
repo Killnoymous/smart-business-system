@@ -77,12 +77,12 @@ const FeaturedCarousel = () => {
                             className="w-full h-full object-cover"
                         />
                         {/* High Contrast Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-10 text-center">
-                            <h3 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tighter drop-shadow-md mb-2 leading-none" style={{ fontFamily: 'Impact, sans-serif' }}>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end items-center p-6 md:p-10 text-center">
+                            <h3 className="text-white text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide drop-shadow-lg mb-4 leading-tight" style={{ fontFamily: 'Impact, sans-serif, system-ui' }}>
                                 {slides[currentIndex].title}
                             </h3>
                             <div className="flex justify-center">
-                                <button className="text-xs md:text-sm text-black bg-white px-4 py-1.5 uppercase tracking-widest font-bold hover:bg-[#E72480] hover:text-white transition-colors duration-300 rounded-sm">
+                                <button className="text-[10px] md:text-xs text-black bg-white px-6 py-2 uppercase tracking-[0.2em] font-bold hover:bg-[#E72480] hover:text-white transition-colors duration-300 rounded-sm shadow-xl">
                                     {slides[currentIndex].subtitle}
                                 </button>
                             </div>
