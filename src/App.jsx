@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import FeaturedCarousel from './components/FeaturedCarousel';
 import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <FeaturedCarousel />
         <ProductGrid />
       </main>
       <Footer onAboutClick={() => setIsAboutOpen(true)} />
