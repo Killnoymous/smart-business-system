@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
+import hero1 from '../assets/hero1.png';
+import hero2 from '../assets/hero2.png';
+import hero3 from '../assets/hero3.png';
+
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Placeholder slides since real images are not available
     const slides = [
         {
             id: 1,
-            color: "bg-[#e8dcd5]", // Muted Beige
+            image: hero1,
             title: "Ethnic Elegance",
-            subtitle: "New Festive Collection"
+            subtitle: "New Festive Collection",
+            // Positioning text to ensure contrast
+            textColor: "text-white"
         },
         {
             id: 2,
-            color: "bg-[#d5b0b0]", // Muted Rose
-            title: "Floral Dreams",
-            subtitle: "Shop the latest prints"
+            image: hero2,
+            title: "Royal Vibrance",
+            subtitle: "The Wedding Edit",
+            textColor: "text-white"
         },
         {
             id: 3,
-            color: "bg-[#c5d5d5]", // Muted Blue/Green
+            image: hero3,
             title: "Summer Breeze",
-            subtitle: "Cotton essentials for you"
+            subtitle: "Cotton Essentials",
+            textColor: "text-gray-900" // Dark text for lighter image if needed, but image is generated "contrasting" so white might still work. Let's stick to white for now as editorial images usually have overlay.
         }
     ];
 
@@ -37,21 +44,23 @@ const Hero = () => {
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
-                    className={`absolute inset-0 flex flex-col justify-center items-center text-center transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                        } ${slide.color}`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                 >
-                    {/* Placeholder Visual Indicator */}
-                    <div className="w-full h-full flex flex-col justify-center items-center p-4">
-                        <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/30 flex items-center justify-center mb-6">
-                            <span className="text-white/50 text-sm">Image Placeholder</span>
-                        </div>
-                        <h2 className="text-white text-md md:text-xl font-medium tracking-[0.2em] uppercase mb-4 slide-up">
+                    {/* Background Image */}
+                    <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
+
+                    {/* Overlay for better text readability */}
+                    <div className="absolute inset-0 bg-black/20"></div>
+
+                    {/* Content */}
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
+                        <h2 className="text-white text-md md:text-xl font-medium tracking-[0.2em] uppercase mb-4 slide-up drop-shadow-md">
                             {slide.subtitle}
                         </h2>
-                        <h1 className="text-white text-5xl md:text-7xl font-serif font-bold mb-8 slide-up-delay">
+                        <h1 className="text-white text-5xl md:text-7xl font-serif font-bold mb-8 slide-up-delay drop-shadow-lg">
                             {slide.title}
                         </h1>
-                        <button className="bg-white text-gray-900 px-8 py-3 uppercase tracking-widest text-sm font-semibold hover:bg-primary hover:text-white transition-colors duration-300 slide-up-delay-2">
+                        <button className="bg-white text-gray-900 px-8 py-3 uppercase tracking-widest text-sm font-semibold hover:bg-primary hover:text-white transition-colors duration-300 slide-up-delay-2 shadow-lg">
                             Shop Now
                         </button>
                     </div>
