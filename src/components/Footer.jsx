@@ -1,5 +1,6 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = ({ onAboutClick }) => {
     const handleSubmit = (e) => {
@@ -33,7 +34,7 @@ const Footer = ({ onAboutClick }) => {
                             <li>
                                 <button onClick={onAboutClick} className="hover:text-primary transition-colors text-left">About Us</button>
                             </li>
-                            <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
+                            <li><Link to="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
                             <li><a href="#" className="hover:text-primary transition-colors">Track Order</a></li>
                             <li><a href="#" className="hover:text-primary transition-colors">Shipping Policy</a></li>
                             <li><a href="#" className="hover:text-primary transition-colors">Return & Exchange</a></li>

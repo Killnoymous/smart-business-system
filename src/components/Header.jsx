@@ -151,12 +151,9 @@ const Header = () => {
                                         Saved Addresses
                                     </button>
 
-                                    <button
-                                        onClick={() => isLoggedIn ? navigate('/contact') : (alert("Please Login to Contact Us"), setIsLoginOpen(true))}
-                                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#ed2585] hover:text-white transition-colors"
-                                    >
+                                    <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#ed2585] hover:text-white transition-colors">
                                         Contact Us
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
