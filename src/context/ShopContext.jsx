@@ -13,13 +13,24 @@ export const ShopProvider = ({ children }) => {
         alert(`Added ${product.name} to cart!`);
     };
 
+    const removeFromCart = (productId) => {
+        setCart((prev) => prev.filter(item => item.id !== productId));
+    };
+
     const addToWishlist = (product) => {
-        setWishlist((prev) => [...prev, product]);
-        alert(`Added ${product.name} to wishlist!`);
+        setWishlist((prev) => {
+            if (prev.some(item => item.id === product.id)) return prev; // Avoid duplicates
+            alert(`Added ${product.name} to wishlist!`);
+            return [...prev, product];
+        });
+    };
+
+    const removeFromWishlist = (productId) => {
+        setWishlist((prev) => prev.filter(item => item.id !== productId));
     };
 
     return (
-        <ShopContext.Provider value={{ cart, wishlist, addToCart, addToWishlist }}>
+        <ShopContext.Provider value={{ cart, wishlist, addToCart, removeFromCart, addToWishlist, removeFromWishlist }}>
             {children}
         </ShopContext.Provider>
     );

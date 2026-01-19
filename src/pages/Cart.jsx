@@ -4,7 +4,7 @@ import { Trash2, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, setCart } = useShop(); // Note: check context if setCart is exposed, if not need to add removeFromCart to context
+    const { cart, removeFromCart } = useShop();
     const navigate = useNavigate();
 
     // Grouping items or listing them simple? Simple list for now.
@@ -44,7 +44,10 @@ const Cart = () => {
                                     <p className="text-gray-500 text-sm mb-2">{item.category}</p>
                                     <p className="font-bold text-[#ed2585]">{item.price}</p>
                                 </div>
-                                <button className="text-gray-400 hover:text-red-500">
+                                <button
+                                    onClick={() => removeFromCart(item.id)}
+                                    className="text-gray-400 hover:text-red-500"
+                                >
                                     <Trash2 size={20} />
                                 </button>
                             </div>

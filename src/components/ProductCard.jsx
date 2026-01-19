@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const { addToCart, addToWishlist } = useShop();
+    const { addToCart, addToWishlist, removeFromWishlist, wishlist } = useShop();
     const navigate = useNavigate();
+
+    const isWishlisted = wishlist.some(item => item.id === product.id);
 
     const handleAddToCart = (e) => {
         e.stopPropagation();
@@ -17,7 +19,11 @@ const ProductCard = ({ product }) => {
     const handleWishlist = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        addToWishlist(product);
+        if (isWishlisted) {
+            removeFromWishlist(product.id);
+        } else {
+            addToWishlist(product);
+        }
     };
 
     return (
@@ -50,9 +56,9 @@ const ProductCard = ({ product }) => {
                 {/* Wishlist Icon */}
                 <button
                     onClick={handleWishlist}
-                    className="absolute top-3 right-3 p-2 bg-white/80 rounded-full text-gray-600 hover:text-primary hover:bg-white transition-colors opacity-0 group-hover:opacity-100"
+                    className={`absolute top-3 right-3 p-2 rounded-full transition-colors opacity-0 group-hover:opacity-100 ${isWishlisted ? 'bg-white text-[#ed2585] opacity-100' : 'bg-white/80 text-gray-600 hover:text-[#ed2585] hover:bg-white'}`}
                 >
-                    <Heart size={18} />
+                    <Heart size={18} fill={isWishlisted ? "#ed2585" : "none"} />
                 </button>
 
                 {/* Tag */}
