@@ -95,7 +95,15 @@ const Header = () => {
                                 </form>
                             )}
                             <button
-                                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                                onClick={() => {
+                                    if (isSearchOpen && searchQuery.trim()) {
+                                        // If open and has query, submit
+                                        handleSearch({ preventDefault: () => { } });
+                                    } else {
+                                        // Just toggle
+                                        setIsSearchOpen(!isSearchOpen);
+                                    }
+                                }}
                                 className={`${isSearchOpen ? 'text-[#ed2585]' : 'text-white'} hover:text-gray-100 transition-colors ml-auto`}
                             >
                                 <Search size={20} strokeWidth={2} />

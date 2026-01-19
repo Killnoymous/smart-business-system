@@ -15,9 +15,10 @@ const CategoryPage = () => {
 
         // Normalize for comparison
         const pCat = product.category.toLowerCase().replace(/\s+/g, '-');
+        const pName = product.name.toLowerCase();
         const searchCat = categoryName.toLowerCase();
 
-        return pCat.includes(searchCat) || searchCat.includes(pCat);
+        return pCat.includes(searchCat) || searchCat.includes(pCat) || pName.includes(searchCat);
     });
 
     const title = categoryName ? categoryName.replace(/-/g, ' ') : 'All Products';
