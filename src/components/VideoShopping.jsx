@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone } from 'lucide-react';
-import videoShoppingBg from '../assets/video_shopping_bg.png';
+import videoShoppingBg from '../assets/video_shopping_banner.png';
 
 const VideoShopping = () => {
     return (
