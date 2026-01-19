@@ -10,7 +10,7 @@ const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const { cart } = useShop();
+    const { cart, isLoggedIn, logout } = useShop();
     const navigate = useNavigate();
 
     const navLinks = [
