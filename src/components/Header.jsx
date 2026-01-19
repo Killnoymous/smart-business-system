@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
 import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
-import logo from '../assets/logo.png';
-
+import { Link, useNavigate } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
+import logo from '../assets/logo.png';
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const { cart } = useShop();
+    const navigate = useNavigate();
 
     const navLinks = [
-        { name: 'New Arrivals', href: '#' },
-        { name: 'Suit Sets', href: '#' },
-        { name: 'Dresses', href: '#' },
-        { name: 'Co-ords', href: '#' },
-        { name: 'Deals', href: '#', isSale: true }, // Replaced Jewelry with Deals
+        { name: 'New Arrivals', href: '/category/new-arrivals' },
+        { name: 'Suit Sets', href: '/category/suit-set' },
+        { name: 'Dresses', href: '/category/dresses' },
+        { name: 'Co-ords', href: '/category/co-ords' },
+        { name: 'Deals', href: '/category/deals', isSale: true },
     ];
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/category/${searchQuery.trim()}`);
+            setIsSearchOpen(false);
+            setSearchQuery("");
+        }
+    };
 
     return (
         <div className="w-full relative z-50 bg-white font-sans shadow-sm">
@@ -24,7 +36,7 @@ const Header = () => {
             </div>
 
             {/* Main Header - Single Line */}
-            <header className="sticky top-0 bg-[#ed2585] z-50">
+            <header className="sticky top-0 bg-[#ed2585] z-50 transition-all duration-300">
                 <div className="container mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
 
                     {/* Left: Mobile Menu Button */}
@@ -37,21 +49,21 @@ const Header = () => {
 
                     {/* Left: Brand Logo */}
                     <div className="flex-shrink-0">
-                        <a href="/" className="block">
+                        <Link to="/" className="block">
                             <img
                                 src={logo}
                                 alt="Bhagwati Creations"
                                 className="h-20 md:h-24 object-contain hover:scale-105 transition-transform duration-300"
                             />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Center: Navigation Links (Desktop) */}
                     <nav className="hidden lg:flex flex-1 justify-center space-x-8 xl:space-x-12">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
+                                to={link.href}
                                 className={`text-sm font-semibold uppercase tracking-wider relative group py-2
                                     ${link.isSale ? 'text-white' : 'text-white hover:text-gray-100'}
                                     transition-colors duration-300
@@ -59,22 +71,43 @@ const Header = () => {
                             >
                                 {link.name}
                                 <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></span>
-                            </a>
+                            </Link>
                         ))}
                     </nav>
 
                     {/* Right: Icons */}
                     <div className="flex items-center space-x-4 md:space-x-6">
-                        <button className="text-white hover:text-gray-100 transition-colors">
-                            <Search size={20} strokeWidth={2} />
-                        </button>
-                        <button className="hidden md:block text-white hover:text-gray-100 transition-colors">
+                        {/* Search Input (Expandable) */}
+                        <div className={`relative flex items-center transition-all duration-300 ${isSearchOpen ? 'w-48 bg-white rounded-full px-3 py-1' : 'w-auto'}`}>
+                            {isSearchOpen && (
+                                <form onSubmit={handleSearch} className="w-full">
+                                    <input
+                                        type="text"
+                                        placeholder="Search..."
+                                        className="w-full bg-transparent outline-none text-xs text-black placeholder-gray-500"
+                                        autoFocus
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        onBlur={() => !searchQuery && setIsSearchOpen(false)} // Close on blur if empty
+                                    />
+                                </form>
+                            )}
+                            <button
+                                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                                className={`${isSearchOpen ? 'text-[#ed2585]' : 'text-white'} hover:text-gray-100 transition-colors ml-auto`}
+                            >
+                                <Search size={20} strokeWidth={2} />
+                            </button>
+                        </div>
+
+                        <Link to="/wishlist" className="hidden md:block text-white hover:text-gray-100 transition-colors">
                             <Heart size={20} strokeWidth={2} />
-                        </button>
-                        <button className="text-white hover:text-gray-100 transition-colors relative">
+                        </Link>
+
+                        <Link to="/cart" className="text-white hover:text-gray-100 transition-colors relative">
                             <ShoppingBag size={20} strokeWidth={2} />
                             <span className="absolute -top-1 -right-1 bg-white text-[#ed2585] text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">{cart.length}</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </header>
@@ -93,16 +126,16 @@ const Header = () => {
                     </div>
                     <div className="flex flex-col p-6 space-y-6">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
+                                to={link.href}
                                 className={`text-base font-medium uppercase tracking-wide
                                     ${link.isSale ? 'text-[#ed2585]' : 'text-[#ed2585]'}
                                 `}
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
