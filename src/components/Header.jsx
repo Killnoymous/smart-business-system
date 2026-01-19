@@ -103,12 +103,42 @@ const Header = () => {
                         </div>
 
                         {/* Profile/User Icon */}
-                        <button
-                            onClick={() => setIsLoginOpen(true)}
-                            className="text-white hover:text-gray-100 transition-colors"
-                        >
-                            <User size={20} strokeWidth={2} />
-                        </button>
+                        <div className="relative group">
+                            <button
+                                className="text-white hover:text-gray-100 transition-colors py-2"
+                            >
+                                <User size={20} strokeWidth={2} />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            <div className="absolute right-0 top-full w-48 bg-white shadow-xl rounded-md overflow-hidden hidden group-hover:block border border-gray-100 transform origin-top transition-all duration-200 z-[60]">
+                                <div className="py-1">
+                                    <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
+                                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Welcome</p>
+                                        <p className="text-xs text-gray-400">To Bhagwati Creations</p>
+                                    </div>
+
+                                    <button
+                                        onClick={() => setIsLoginOpen(true)}
+                                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#ed2585] hover:text-white transition-colors"
+                                    >
+                                        Login / Sign Up
+                                    </button>
+
+                                    <Link to="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#ed2585] hover:text-white transition-colors">
+                                        My Orders
+                                    </Link>
+
+                                    <Link to="/addresses" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#ed2585] hover:text-white transition-colors">
+                                        Saved Addresses
+                                    </Link>
+
+                                    <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#ed2585] hover:text-white transition-colors">
+                                        Contact Us
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
 
                         <Link to="/wishlist" className="hidden md:block text-white hover:text-gray-100 transition-colors">
                             <Heart size={20} strokeWidth={2} />
