@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, X, User } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
 import logo from '../assets/logo.png';
+import LoginModal from './LoginModal';
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const { cart } = useShop();
     const navigate = useNavigate();
@@ -100,6 +102,14 @@ const Header = () => {
                             </button>
                         </div>
 
+                        {/* Profile/User Icon */}
+                        <button
+                            onClick={() => setIsLoginOpen(true)}
+                            className="text-white hover:text-gray-100 transition-colors"
+                        >
+                            <User size={20} strokeWidth={2} />
+                        </button>
+
                         <Link to="/wishlist" className="hidden md:block text-white hover:text-gray-100 transition-colors">
                             <Heart size={20} strokeWidth={2} />
                         </Link>
@@ -137,9 +147,18 @@ const Header = () => {
                                 {link.name}
                             </Link>
                         ))}
+                        <button
+                            className="text-left text-base font-medium uppercase tracking-wide text-[#ed2585] mt-4 flex items-center gap-2"
+                            onClick={() => { setIsMobileMenuOpen(false); setIsLoginOpen(true); }}
+                        >
+                            <User size={20} /> Login / Sign Up
+                        </button>
                     </div>
                 </div>
             </div>
+
+            {/* Login Modal */}
+            <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
         </div>
     );
 };
