@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
 
 function App() {
+  // Main application component
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   return (
