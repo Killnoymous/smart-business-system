@@ -93,10 +93,11 @@ const ReelCard = ({ data }) => {
                     ref={videoRef}
                     src={data.video}
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    autoPlay
                     loop
-                    muted={isMuted}
+                    muted
                     playsInline
-                    preload="metadata" // Load first frame as thumbnail
+                    preload="auto"
                 />
 
                 {/* Gradient Overlay - Always present at bottom for text readability */}
@@ -159,11 +160,44 @@ const InstagramReels = () => {
                     </p>
                 </div>
 
-                {/* Reels Grid - 5 Columns for Desktop to match 'thumbnail' density */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-2 md:px-0">
-                    {reelsData.map((reel) => (
-                        <ReelCard key={reel.id} data={reel} />
-                    ))}
+                {/* Reels Slider Container */}
+                <div className="relative group/slider">
+                    {/* Left Arrow */}
+                    <button
+                        onClick={() => {
+                            const container = document.getElementById('reels-container');
+                            if (container) container.scrollBy({ left: -300, behavior: 'smooth' });
+                        }}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white/90 p-3 rounded-full shadow-lg text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 disabled:opacity-0 hidden md:block"
+                        aria-label="Scroll Left"
+                    >
+                        <ArrowLeft size={24} />
+                    </button>
+
+                    {/* Right Arrow */}
+                    <button
+                        onClick={() => {
+                            const container = document.getElementById('reels-container');
+                            if (container) container.scrollBy({ left: 300, behavior: 'smooth' });
+                        }}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white/90 p-3 rounded-full shadow-lg text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 hidden md:block"
+                        aria-label="Scroll Right"
+                    >
+                        <ArrowRight size={24} />
+                    </button>
+
+                    {/* Scrollable Row */}
+                    <div
+                        id="reels-container"
+                        className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                        {reelsData.map((reel) => (
+                            <div key={reel.id} className="min-w-[280px] md:min-w-[320px] snap-center">
+                                <ReelCard data={reel} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* View More Button */}
