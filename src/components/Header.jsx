@@ -31,14 +31,14 @@ const Header = () => {
     };
 
     return (
-        <div className="w-full relative z-50 bg-white font-sans shadow-sm">
+        <div className="w-full sticky top-0 z-50 bg-white font-sans shadow-sm">
             {/* Announcement Bar */}
             <div className="bg-[#ed2585] text-white text-center py-2 text-[10px] md:text-xs tracking-[0.2em] font-medium uppercase">
                 Free Shipping on Orders Above ₹999
             </div>
 
             {/* Main Header - Single Line */}
-            <header className="sticky top-0 bg-[#ed2585] z-50 transition-all duration-300">
+            <header className="bg-[#ed2585] z-50 transition-all duration-300">
                 <div className="container mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
 
                     {/* Left: Mobile Menu Button */}
