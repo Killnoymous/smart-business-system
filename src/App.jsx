@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './pages/Home';
-import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart';
-import Wishlist from './pages/Wishlist';
-import CategoryPage from './pages/CategoryPage';
 import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
-import Contact from './pages/Contact';
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Wishlist = lazy(() => import('./pages/Wishlist'));
+const CategoryPage = lazy(() => import('./pages/CategoryPage'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   // Main application component
@@ -18,14 +20,20 @@ function App() {
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/category/:categoryName" element={<CategoryPage />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Suspense fallback={
+          <div className="flex justify-center items-center h-[60vh]">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/category/:categoryName" element={<CategoryPage />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer onAboutClick={() => setIsAboutOpen(true)} />
       <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
