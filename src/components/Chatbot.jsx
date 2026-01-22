@@ -126,8 +126,13 @@ const Chatbot = () => {
             return "Our main dispatch center is in Delhi. We deliver to Delhi/NCR within 2-3 days.";
         }
 
+        // Offers & Discounts
+        if (lowerQuery.includes('offer') || lowerQuery.includes('discount') || lowerQuery.includes('sale') || lowerQuery.includes('coupon') || lowerQuery.includes('deal') || lowerQuery.includes('promo')) {
+            return "🎉 Current Offers:\n1. FREE Shipping on orders above ₹5000.\n2. Use code 'WELCOME10' for flat 10% off on your first purchase!\n3. Check our 'Sale' section for seasonal discounts.";
+        }
+
         // Fallback
-        return "I'm sorry, I didn't quite catch that. I can help with Products, Sizing, Customization, Shipping, Returns, or Order status. Please try asking differently!";
+        return "I'm sorry, I didn't quite catch that. I can help with Products, Sizing, Offers, Shipping, Returns, or Order status. Please try asking differently!";
     };
 
     const handleSendMessage = (e) => {
