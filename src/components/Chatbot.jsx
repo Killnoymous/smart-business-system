@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Minus } from 'lucide-react';
+import { X, Send, Minus } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -109,8 +110,8 @@ const Chatbot = () => {
                     {/* Header */}
                     <div className="bg-primary p-4 flex justify-between items-center text-white">
                         <div className="flex items-center gap-2">
-                            <div className="bg-white/20 p-1.5 rounded-full">
-                                <MessageCircle size={18} />
+                            <div className="bg-white/20 p-1 rounded-full w-8 h-8 flex items-center justify-center overflow-hidden">
+                                <img src={logo} alt="Bot" className="w-full h-full object-cover" />
                             </div>
                             <div>
                                 <h3 className="font-semibold text-sm">Bhagwati Assistant</h3>
@@ -138,8 +139,8 @@ const Chatbot = () => {
                             >
                                 <div
                                     className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed ${msg.sender === 'user'
-                                            ? 'bg-primary text-white rounded-tr-none'
-                                            : 'bg-white text-gray-700 shadow-sm border border-gray-100 rounded-tl-none'
+                                        ? 'bg-primary text-white rounded-tr-none'
+                                        : 'bg-white text-gray-700 shadow-sm border border-gray-100 rounded-tl-none'
                                         }`}
                                 >
                                     {msg.text}
@@ -172,8 +173,8 @@ const Chatbot = () => {
             {/* Minimized State Bubble */}
             {isMinimized && isOpen && (
                 <div className="pointer-events-auto bg-white p-3 rounded-full shadow-xl border border-gray-100 mb-4 flex items-center gap-3 animate-in slide-in-from-bottom-2 cursor-pointer hover:shadow-2xl transition-all" onClick={() => setIsMinimized(false)}>
-                    <div className="bg-primary/10 p-2 rounded-full">
-                        <MessageCircle size={20} className="text-primary" />
+                    <div className="bg-primary/10 p-1 rounded-full w-8 h-8 flex items-center justify-center overflow-hidden">
+                        <img src={logo} alt="Bot" className="w-full h-full object-cover" />
                     </div>
                     <div className="pr-2">
                         <p className="text-xs font-semibold text-gray-800">Chat with us</p>
@@ -190,10 +191,10 @@ const Chatbot = () => {
             {!isOpen && (
                 <button
                     onClick={() => { setIsOpen(true); setIsMinimized(false); }}
-                    className="pointer-events-auto bg-primary text-white p-4 rounded-full shadow-2xl hover:bg-primary-dark transition-all duration-300 hover:scale-110 group relative"
+                    className="pointer-events-auto bg-primary text-white p-0 rounded-full shadow-2xl hover:bg-primary-dark transition-all duration-300 hover:scale-110 group relative w-16 h-16 flex items-center justify-center overflow-hidden border-2 border-white"
                 >
-                    <MessageCircle size={24} className="group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-white rounded-full"></span>
+                    <img src={logo} alt="Chat" className="w-full h-full object-cover" />
+                    <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-white rounded-full z-10"></span>
                 </button>
             )}
         </div>
