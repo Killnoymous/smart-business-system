@@ -83,8 +83,51 @@ const Chatbot = () => {
             return "You're welcome! Happy Shopping! ✨";
         }
 
+        // Specific Product Categories
+        if (lowerQuery.includes('silk')) {
+            return "Our Silk Saree collection features Kanjivaram, Banarasi, and Soft Silk sarees. Perfect for weddings!";
+        }
+        if (lowerQuery.includes('cotton')) {
+            return "Check out our breathable Cotton Sarees and Suits, ideal for daily wear and summer comfort.";
+        }
+        if (lowerQuery.includes('chiffon') || lowerQuery.includes('georgette')) {
+            return "Our Chiffon and Georgette range offers a lightweight and flowy drape, perfect for parties.";
+        }
+
+        // Services
+        if (lowerQuery.includes('stitch') || lowerQuery.includes('custom') || lowerQuery.includes('alter') || lowerQuery.includes('tailor')) {
+            return "Yes! We offer custom stitching for Blouses, Lehengas, and Suits. You can select the 'Stitching' option on the product page.";
+        }
+        if (lowerQuery.includes('wholesale') || lowerQuery.includes('bulk') || lowerQuery.includes('resell')) {
+            return "We do offer wholesale pricing for bulk orders. Please contact us at wholesale@bhagwaticreations.com for more details.";
+        }
+        if (lowerQuery.includes('international') || lowerQuery.includes('usa') || lowerQuery.includes('uk') || lowerQuery.includes('canada') || lowerQuery.includes('abroad')) {
+            return "Yes, we ship globally! International shipping rates are calculated at checkout based on weight and destination.";
+        }
+
+        // Customer Support & Policies
+        if (lowerQuery.includes('cancel')) {
+            return "You can cancel your order within 24 hours of placing it. Please go to 'My Orders' or contact support immediately.";
+        }
+        if (lowerQuery.includes('size') || lowerQuery.includes('fit') || lowerQuery.includes('chart') || lowerQuery.includes('measure')) {
+            return "You can find a detailed Size Guide on every product page next to the size selection. We generally follow standard Indian sizing.";
+        }
+        if (lowerQuery.includes('care') || lowerQuery.includes('wash')) {
+            return "For Silk and heavy embroidered outfits, we recommend Dry Clean Only. Cotton outfits can be hand washed in cold water.";
+        }
+
+        // Social Media
+        if (lowerQuery.includes('instagram') || lowerQuery.includes('facebook') || lowerQuery.includes('social')) {
+            return "Follow us on Instagram and Facebook @BhagwatiCreations for the latest trends and updates!";
+        }
+
+        // Locations (Specific)
+        if (lowerQuery.includes('delhi') || lowerQuery.includes('noida') || lowerQuery.includes('gurgaon')) {
+            return "Our main dispatch center is in Delhi. We deliver to Delhi/NCR within 2-3 days.";
+        }
+
         // Fallback
-        return "I'm sorry, I didn't quite catch that. I can help with Products, Shipping, Returns, or Order status. Please try asking differently!";
+        return "I'm sorry, I didn't quite catch that. I can help with Products, Sizing, Customization, Shipping, Returns, or Order status. Please try asking differently!";
     };
 
     const handleSendMessage = (e) => {
