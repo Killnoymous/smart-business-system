@@ -35,11 +35,11 @@ const ProductGrid = () => {
                     {/* Scrollable Area */}
                     <div
                         id="product-carousel"
-                        className="flex overflow-x-auto gap-4 md:gap-6 pb-8 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth"
+                        className="flex overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scrollbar-hide scroll-smooth w-full px-1"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                         {products.map(product => (
-                            <div key={product.id} className="min-w-[280px] md:min-w-[320px] snap-center">
+                            <div key={product.id} className="min-w-[280px] md:min-w-[320px] snap-start flex-shrink-0">
                                 <ProductCard
                                     product={product}
                                     onQuickView={(p) => setSelectedProduct(p)}
