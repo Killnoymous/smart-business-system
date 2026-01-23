@@ -23,18 +23,18 @@ const ShopByCategories = () => {
             <div className="container mx-auto px-4">
                 {/* Header Section */}
                 {/* Header Section */}
-                <div className="mb-12">
-                    <div className="flex justify-center w-full mb-4">
+                <div className="mb-12 text-center">
+                    <div className="flex justify-center w-full mb-3">
                         <p className="text-rose-500 font-semibold tracking-[0.2em] text-xs md:text-sm uppercase">
                             Browse by style & need
                         </p>
                     </div>
 
-                    <div className="text-left">
-                        <h2 className="text-3xl md:text-5xl font-serif text-gray-900 mb-4">
+                    <div className="text-center">
+                        <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-3">
                             Shop By Categories
                         </h2>
-                        <p className="text-gray-500 text-lg font-light">
+                        <p className="text-gray-500 text-sm md:text-base font-light">
                             Easily find what you're looking for – all neatly sorted by category.
                         </p>
                     </div>
