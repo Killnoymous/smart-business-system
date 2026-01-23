@@ -89,7 +89,7 @@ const Header = () => {
                                         "Muslin Suits",
                                         "Organza Suits",
                                         "Silk Collection",
-                                        "Coords",
+                                        "Co-ords",
                                         "Cotton Suits",
                                         "Party Wear",
                                         "Georgette Collection",
