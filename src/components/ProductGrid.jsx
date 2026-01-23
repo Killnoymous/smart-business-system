@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import QuickViewModal from './QuickViewModal';
 import { products } from '../data/products';
 
-const ProductGrid = () => {
+const ProductGrid = ({ title = "New Arrivals", products: inputProducts = products, CarouselId = "product-carousel" }) => {
 
 
     const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -12,7 +12,7 @@ const ProductGrid = () => {
         <section className="py-8 bg-white">
             <div className="container mx-auto px-4 md:px-8 relative group">
                 <div className="text-center mb-6">
-                    <h2 className="text-2xl md:text-3xl font-serif font-medium text-gray-900 mb-3 tracking-[0.2em] uppercase">New Arrivals</h2>
+                    <h2 className="text-2xl md:text-3xl font-serif font-medium text-gray-900 mb-3 tracking-[0.2em] uppercase">{title}</h2>
                     <div className="w-16 h-1 bg-[#ed2585] mx-auto rounded-full"></div>
                     <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-sm font-light leading-relaxed">
                         Discover our latest collection of handpicked ethnic wear, designed to make you shine on every occasion.
@@ -24,7 +24,7 @@ const ProductGrid = () => {
                     {/* Previous Button */}
                     <button
                         onClick={() => {
-                            const container = document.getElementById('product-carousel');
+                            const container = document.getElementById(CarouselId);
                             if (container) container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
                         }}
                         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white p-3 md:p-4 rounded-full shadow-xl text-gray-800 hover:bg-[#ed2585] hover:text-white transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 hidden md:flex items-center justify-center border border-gray-100"
@@ -34,11 +34,11 @@ const ProductGrid = () => {
 
                     {/* Scrollable Area */}
                     <div
-                        id="product-carousel"
+                        id={CarouselId}
                         className="flex overflow-x-auto gap-2 md:gap-4 pb-8 snap-x snap-mandatory scrollbar-hide scroll-smooth w-full px-4 md:px-0"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                        {products.map(product => (
+                        {inputProducts.map(product => (
                             <div
                                 key={product.id}
                                 className="basis-1/2 md:basis-1/3 lg:basis-1/5 min-w-0 pl-2 md:pl-4 snap-start flex-shrink-0"
@@ -54,7 +54,7 @@ const ProductGrid = () => {
                     {/* Next Button */}
                     <button
                         onClick={() => {
-                            const container = document.getElementById('product-carousel');
+                            const container = document.getElementById(CarouselId);
                             if (container) container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
                         }}
                         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white p-3 md:p-4 rounded-full shadow-xl text-gray-800 hover:bg-[#ed2585] hover:text-white transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 hidden md:flex items-center justify-center border border-gray-100"
