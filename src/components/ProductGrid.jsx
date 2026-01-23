@@ -35,7 +35,7 @@ const ProductGrid = () => {
                     {/* Scrollable Area */}
                     <div
                         id="product-carousel"
-                        className="flex overflow-x-auto gap-4 md:gap-6 pb-8 snap-x snap-mandatory scrollbar-hide scroll-smooth w-full px-4 md:px-0"
+                        className="flex overflow-x-auto gap-2 md:gap-4 pb-8 snap-x snap-mandatory scrollbar-hide scroll-smooth w-full px-4 md:px-0"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                         {products.map(product => (
