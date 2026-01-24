@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import AboutModal from './components/AboutModal';
 import Chatbot from './components/Chatbot';
 
+import ScrollToTop from './components/ScrollToTop';
+
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
@@ -19,6 +21,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      <ScrollToTop />
       <Header />
       <main>
         <Suspense fallback={
