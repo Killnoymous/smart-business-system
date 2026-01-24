@@ -11,6 +11,7 @@ const CategoryPage = () => {
     const filteredProducts = products.filter(product => {
         if (!categoryName) return true;
         if (categoryName.toLowerCase() === 'new-arrivals') return true; // Show all for now or filter by 'New' tag
+        if (categoryName.toLowerCase() === 'all-collections') return true;
         if (categoryName.toLowerCase() === 'deals') return product.tag === 'Sale';
 
         // Normalize for comparison
