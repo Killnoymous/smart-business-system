@@ -6,12 +6,26 @@ import ShopByCategories from '../components/ShopByCategories';
 import InstagramReels from '../components/InstagramReels';
 import VideoShopping from '../components/VideoShopping';
 
+import { products } from '../data/products';
+
 const Home = () => {
+    // Filter products under ₹999
+    const under999Products = products.filter(product => {
+        const price = parseInt(product.price.replace(/[^\d]/g, ''));
+        return price < 999;
+    });
+
     return (
         <>
             <Hero />
             <InstagramReels />
             <ProductGrid title="New Arrivals" CarouselId="new-arrivals" />
+
+            <ProductGrid
+                title="Under 999 Bestsellers"
+                products={under999Products}
+                CarouselId="under-999"
+            />
             <ProductGrid
                 title="Co-ords Collection"
                 CarouselId="coords-collection"

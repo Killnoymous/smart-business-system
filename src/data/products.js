@@ -97,4 +97,48 @@ export const products = [
         stock: 10,
         sizes: ["S", "M", "L", "XL", "XXL"]
     },
+    {
+        id: 9,
+        name: "Cotton Daily Wear Kurti",
+        category: "Kurta",
+        price: "₹899",
+        originalPrice: "₹1,299",
+        tag: "Bestseller",
+        image: product2, // Reusing image for demo
+        description: "Soft cotton kurti perfect for daily wear. Breathable fabric with minimal print.",
+        stock: 25,
+        sizes: ["S", "M", "L", "XL"]
+    },
+    {
+        id: 10,
+        name: "Printed Scarf",
+        category: "Accessories",
+        price: "₹499",
+        image: product6, // Reusing image
+        description: "Lightweight printed scarf to accessorize your ethnic look.",
+        stock: 50,
+        sizes: ["Free Size"]
+    },
+    {
+        id: 11,
+        name: "Basic Leggings",
+        category: "Bottoms",
+        price: "₹699",
+        image: product8, // Reusing image
+        description: "Comfortable cotton lycra leggings available in multiple colors.",
+        stock: 100,
+        sizes: ["M", "L", "XL"]
+    },
+    {
+        id: 12,
+        name: "Ethnic Oxidized Earrings",
+        category: "Jewelry",
+        price: "₹299",
+        originalPrice: "₹599",
+        tag: "Trending",
+        image: product4, // Reusing image
+        description: "Beautiful oxidized silver earrings to match your traditional outfits.",
+        stock: 30,
+        sizes: ["Free Size"]
+    }
 ];
