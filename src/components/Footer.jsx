@@ -22,7 +22,7 @@ const Footer = ({ onAboutClick }) => {
                         </p>
                         <div className="flex space-x-4">
                             <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Facebook size={20} /></a>
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Instagram size={20} /></a>
+                            <a href="https://www.instagram.com/bhagwati_creations01/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors"><Instagram size={20} /></a>
                             <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Twitter size={20} /></a>
                         </div>
                     </div>

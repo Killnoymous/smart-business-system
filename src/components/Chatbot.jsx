@@ -118,7 +118,7 @@ const Chatbot = () => {
 
         // Social Media
         if (lowerQuery.includes('instagram') || lowerQuery.includes('facebook') || lowerQuery.includes('social')) {
-            return "Follow us on Instagram and Facebook @BhagwatiCreations for the latest trends and updates!";
+            return "Follow us on Instagram @bhagwati_creations01 for the latest trends and updates!";
         }
 
         // Locations (Specific)
