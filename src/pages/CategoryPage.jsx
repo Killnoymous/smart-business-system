@@ -1,10 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { products } from '../data/products';
+import { useShop } from '../context/ShopContext';
 import ProductCard from '../components/ProductCard';
 
 const CategoryPage = () => {
     const { categoryName } = useParams();
+    const { products, loading } = useShop();
+
+    if (loading) {
+        return <div className="min-h-screen pt-32 text-center">Loading products...</div>;
+    }
 
     // Map URL slug to data category if needed, or just partial match
     // Simple filter logic:

@@ -7,7 +7,9 @@ import { Heart, ShoppingBag, ArrowLeft } from 'lucide-react';
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { addToCart, addToWishlist } = useShop();
+    const { products, addToCart, addToWishlist, loading } = useShop();
+
+    if (loading) return <div className="text-center py-20">Loading...</div>;
 
     const product = products.find(p => p.id === parseInt(id));
 
@@ -24,6 +26,8 @@ const ProductDetails = () => {
             </div>
         );
     }
+
+    const isOutOfStock = product.stock <= 0;
 
     return (
         <section className="py-12 bg-gray-50 min-h-screen">
@@ -43,16 +47,21 @@ const ProductDetails = () => {
                             <img
                                 src={product.image}
                                 alt={product.name}
-                                className="w-full h-full object-cover"
+                                className={`w-full h-full object-cover ${isOutOfStock ? 'grayscale opacity-75' : ''}`}
                             />
                         ) : (
                             <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
                                 <span className="text-xl">No Image</span>
                             </div>
                         )}
-                        {product.tag && (
+                        {product.tag && !isOutOfStock && (
                             <span className="absolute top-4 left-4 bg-red-600 text-white text-xs uppercase font-bold px-3 py-1 rounded shadow-sm">
                                 {product.tag}
+                            </span>
+                        )}
+                        {isOutOfStock && (
+                            <span className="absolute top-4 right-4 bg-black text-white text-xs uppercase font-bold px-3 py-1 rounded shadow-sm">
+                                Out of Stock
                             </span>
                         )}
                     </div>
@@ -66,11 +75,14 @@ const ProductDetails = () => {
                             {product.name}
                         </h1>
 
-                        <div className="flex items-end gap-4 mb-8">
+                        <div className="flex items-end gap-4 mb-2">
                             <span className="text-3xl font-semibold text-gray-900">{product.price}</span>
                             {product.originalPrice && (
                                 <span className="text-xl text-gray-400 line-through mb-1">{product.originalPrice}</span>
                             )}
+                        </div>
+                        <div className={`text-sm mb-8 font-medium ${isOutOfStock ? 'text-red-500' : 'text-green-600'}`}>
+                            {isOutOfStock ? 'Currently Unavailable' : `In Stock: ${product.stock > 10 ? 'Available' : product.stock + ' left'}`}
                         </div>
 
                         <p className="text-gray-600 leading-relaxed mb-10 text-lg">
@@ -80,9 +92,14 @@ const ProductDetails = () => {
                         <div className="flex flex-col sm:flex-row gap-4">
                             <button
                                 onClick={() => addToCart(product)}
-                                className="flex-1 bg-[#ed2585] text-white py-4 px-8 rounded-full font-semibold uppercase tracking-wider hover:bg-[#c9186b] transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200"
+                                disabled={isOutOfStock}
+                                className={`flex-1 py-4 px-8 rounded-full font-semibold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg duration-200
+                                    ${isOutOfStock
+                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                        : 'bg-[#ed2585] text-white hover:bg-[#c9186b] hover:shadow-xl hover:-translate-y-0.5'
+                                    }`}
                             >
-                                <ShoppingBag size={20} /> Add to Cart
+                                <ShoppingBag size={20} /> {isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
                             </button>
                             <button
                                 onClick={() => addToWishlist(product)}

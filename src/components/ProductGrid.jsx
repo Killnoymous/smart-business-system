@@ -1,9 +1,11 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import QuickViewModal from './QuickViewModal';
-import { products } from '../data/products';
+import { useShop } from '../context/ShopContext';
 
-const ProductGrid = ({ title = "New Arrivals", products: inputProducts = products, CarouselId = "product-carousel" }) => {
+const ProductGrid = ({ title = "New Arrivals", products: propProducts, CarouselId = "product-carousel" }) => {
+    const { products: contextProducts } = useShop();
+    const inputProducts = propProducts || contextProducts;
 
 
     const [selectedProduct, setSelectedProduct] = React.useState(null);
